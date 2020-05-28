@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -14,6 +16,10 @@ public class TanKFrame extends Frame {
         setTitle("tank war");
         setVisible(true);
 
+        //键盘事件的监听
+        this.addKeyListener(new MyKeyListener());
+
+        //窗口事件的监听
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -28,6 +34,21 @@ public class TanKFrame extends Frame {
         g.fillRect(x, y, 50, 50);
         x += 10;
         y += 10;
+
+    }
+
+    class MyKeyListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("key pressed");
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            System.out.println("key released");
+        }
+
 
     }
 }
