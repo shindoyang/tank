@@ -9,7 +9,9 @@ import java.awt.event.WindowEvent;
  */
 public class TanKFrame extends Frame {
     int x = 200, y = 200;
+    Dir dir = Dir.DOWN;
 
+    private final static int SPEED = 10;
     public TanKFrame() {
         setSize(800, 600);
         setResizable(false);
@@ -31,8 +33,24 @@ public class TanKFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         g.fillRect(x, y, 50, 50);
-        //x += 10;
-        //y += 10;
+
+        switch (dir) {
+            case LEFT:
+                x -= SPEED;
+                break;
+            case UP:
+                y -= SPEED;
+                break;
+            case RIGHT:
+                x += SPEED;
+                break;
+            case DOWN:
+                y += SPEED;
+                break;
+            default:
+                break;
+
+        }
 
     }
 
@@ -62,8 +80,7 @@ public class TanKFrame extends Frame {
                 default:
                     break;
             }
-            //x += 200;
-            //repaint();
+            setMainTankDir();
         }
 
         @Override
@@ -85,8 +102,15 @@ public class TanKFrame extends Frame {
                 default:
                     break;
             }
+            setMainTankDir();
         }
 
 
+        private void setMainTankDir() {
+            if (bl) dir = Dir.LEFT;
+            if (br) dir = Dir.RIGHT;
+            if (bu) dir = Dir.UP;
+            if (bd) dir = Dir.DOWN;
+        }
     }
 }
