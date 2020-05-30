@@ -8,10 +8,7 @@ import java.awt.event.WindowEvent;
  * Created by shindo on 2020/5/28.
  */
 public class TanKFrame extends Frame {
-    int x = 200, y = 200;
-    Dir dir = Dir.DOWN;
-
-    private final static int SPEED = 10;
+    Tank myTank = new Tank(200, 200, Dir.DOWN);
     public TanKFrame() {
         setSize(800, 600);
         setResizable(false);
@@ -32,26 +29,7 @@ public class TanKFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        g.fillRect(x, y, 50, 50);
-
-        switch (dir) {
-            case LEFT:
-                x -= SPEED;
-                break;
-            case UP:
-                y -= SPEED;
-                break;
-            case RIGHT:
-                x += SPEED;
-                break;
-            case DOWN:
-                y += SPEED;
-                break;
-            default:
-                break;
-
-        }
-
+        myTank.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -107,10 +85,10 @@ public class TanKFrame extends Frame {
 
 
         private void setMainTankDir() {
-            if (bl) dir = Dir.LEFT;
-            if (br) dir = Dir.RIGHT;
-            if (bu) dir = Dir.UP;
-            if (bd) dir = Dir.DOWN;
+            if (bl) myTank.setDir(Dir.LEFT);
+            if (br) myTank.setDir(Dir.RIGHT);
+            if (bu) myTank.setDir(Dir.UP);
+            if (bd) myTank.setDir(Dir.DOWN);
         }
     }
 }
