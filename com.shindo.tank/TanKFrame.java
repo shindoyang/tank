@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
  */
 public class TanKFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN);
+    Bullet b = new Bullet(300, 300, Dir.DOWN);
     public TanKFrame() {
         setSize(800, 600);
         setResizable(false);
@@ -30,6 +31,7 @@ public class TanKFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
+        b.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
