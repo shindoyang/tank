@@ -10,8 +10,9 @@ import java.awt.event.WindowEvent;
 public class TanKFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN);
     Bullet b = new Bullet(300, 300, Dir.DOWN);
+    private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     public TanKFrame() {
-        setSize(800, 600);
+        setSize(GAME_WIDTH, GAME_HEIGHT);
         setResizable(false);
         setTitle("tank war");
         setVisible(true);
@@ -27,6 +28,27 @@ public class TanKFrame extends Frame {
             }
         });
     }
+
+    /*
+    游戏的概念：双缓冲
+    解决屏幕闪烁的现象
+     */
+    Image offScreanImage = null;
+
+    @Override
+    public void update(Graphics g) {
+        if (offScreanImage == null) {
+            offScreanImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+        }
+        Graphics gOffScrean = offScreanImage.getGraphics();
+        Color c = gOffScrean.getColor();
+        gOffScrean.setColor(Color.black);
+        gOffScrean.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        gOffScrean.setColor(c);
+        paint(gOffScrean);
+        g.drawImage(offScreanImage, 0, 0, null);
+    }
+
 
     @Override
     public void paint(Graphics g) {
