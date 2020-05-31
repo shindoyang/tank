@@ -3,14 +3,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shindo on 2020/5/28.
  */
 public class TanKFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN, this);
-    Bullet bullet = new Bullet(300, 300, Dir.DOWN);
-    private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+    List<Bullet> bullets = new ArrayList<Bullet>();
+
+    //    Bullet bullet = new Bullet(300, 300, Dir.DOWN);
+    final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     public TanKFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
         setResizable(false);
@@ -52,8 +56,28 @@ public class TanKFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("子弹数量：" + bullets.size(), 10, 60);
+        g.setColor(c);
+
         myTank.paint(g);
-        bullet.paint(g);
+
+        //方法一
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).paint(g);
+        }
+        //集合内部的Itaretor，中途不允许在别的地方删除，会引发ConcurrentModificationException
+        /*for (Bullet bullet : bullets) {
+            bullet.paint(g);
+        }*/
+
+        //方法二
+        /*for (Iterator<Bullet> it = bullets.iterator(); it.hasNext()) {
+            Bullet b = it.next();
+            if (!live) it.remove();
+        }*/
+
     }
 
     class MyKeyListener extends KeyAdapter {
