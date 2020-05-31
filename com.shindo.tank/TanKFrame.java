@@ -8,8 +8,8 @@ import java.awt.event.WindowEvent;
  * Created by shindo on 2020/5/28.
  */
 public class TanKFrame extends Frame {
-    Tank myTank = new Tank(200, 200, Dir.DOWN);
-    Bullet b = new Bullet(300, 300, Dir.DOWN);
+    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
+    Bullet bullet = new Bullet(300, 300, Dir.DOWN);
     private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     public TanKFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -53,7 +53,7 @@ public class TanKFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
-        b.paint(g);
+        bullet.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -100,6 +100,9 @@ public class TanKFrame extends Frame {
                     break;
                 case KeyEvent.VK_DOWN:
                     bd = false;
+                    break;
+                case KeyEvent.VK_CONTROL:
+                    myTank.fire();
                     break;
                 default:
                     break;
