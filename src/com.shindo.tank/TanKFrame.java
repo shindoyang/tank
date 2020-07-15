@@ -1,3 +1,9 @@
+package com.shindo.tank;
+
+import com.shindo.tank.Bullet;
+import com.shindo.tank.Dir;
+import com.shindo.tank.Tank;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

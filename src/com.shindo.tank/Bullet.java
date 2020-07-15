@@ -1,3 +1,4 @@
+package com.shindo.tank;
 import java.awt.*;
 
 /**

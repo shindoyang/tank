@@ -1,3 +1,7 @@
+
+package com.shindo.tank;
+import com.shindo.tank.Bullet;
+import com.shindo.tank.Dir;
 import java.awt.*;
 
 /**
