@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -23,8 +22,8 @@ class ImageTest {
     void test(){
         try {
             //绝对路径读取图片
-            BufferedImage image = ImageIO.read(new File("D:/jetbrain/shindospaces/tank/src/main/resources/images/bulletD.gif"));
-            assertNotNull(image);
+            /*BufferedImage image = ImageIO.read(new File("D:/jetbrain/shindospaces/tank/src/main/resources/images/bulletD.gif"));
+            assertNotNull(image);*/
 
             //相对路径读取图片
             BufferedImage image2 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/bulletD.gif"));
